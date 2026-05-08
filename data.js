@@ -1357,6 +1357,9 @@ const UNLOCK_MAP = {
   "thors-hammer-2011": 0,
   "item-47-2012": 1,
   "agent-carter-one-shot-2013": 0,
+  "team-thor-2016": 3,
+  "team-thor-part-2-2017": 3,
+  "team-darryl-2018": 3,
   "all-hail-the-king-2014": 1
 };
 
