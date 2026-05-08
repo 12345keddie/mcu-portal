@@ -1,0 +1,17 @@
+{
+  "name": "Marvel Multiverse Portal",
+  "short_name": "MCU Portal",
+  "description": "A comprehensive guide to the Marvel Multiverse.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#ed1d24",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

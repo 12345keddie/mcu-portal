@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ed1d24">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-512.png">
+<title>Marvel Multiverse Portal</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Marvel <span class="accent">Multiverse</span> Portal</h1>
+    <p class="tagline">Every film, show, one-shot &amp; special based on Marvel Comics — and where to watch them.</p>
+    <p class="data-note">Streaming &amp; availability data: UK region, snapshot from early 2026. Verify before purchasing.</p>
+  </div>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle light / dark mode">🌙</button>
+</header>
+
+<section class="controls">
+  <div class="control-row">
+    <input type="search" id="search" placeholder="Search title, director, or character...">
+    <select id="sort">
+      <option value="date-asc">Release date (oldest first)</option>
+      <option value="date-desc">Release date (newest first)</option>
+      <option value="title-asc">Title (A–Z)</option>
+      <option value="title-desc">Title (Z–A)</option>
+    </select>
+  </div>
+
+  <div class="filter-row-wrap">
+    <div class="filter-dropdown" id="dropdown-type">
+      <button class="dropdown-btn">Type ▾</button>
+      <div class="dropdown-content">
+        <div class="chips" data-filter="type"></div>
+      </div>
+    </div>
+    <div class="filter-dropdown" id="dropdown-universe">
+      <button class="dropdown-btn">Universe ▾</button>
+      <div class="dropdown-content">
+        <div class="chips" data-filter="universe"></div>
+      </div>
+    </div>
+    <div class="filter-dropdown" id="dropdown-saga">
+      <button class="dropdown-btn">Saga / Era ▾</button>
+      <div class="dropdown-content">
+        <div class="chips" data-filter="saga"></div>
+      </div>
+    </div>
+    <div class="filter-dropdown" id="dropdown-studio">
+      <button class="dropdown-btn">Studio ▾</button>
+      <div class="dropdown-content">
+        <div class="chips" data-filter="studio"></div>
+      </div>
+    </div>
+    <div class="filter-dropdown" id="dropdown-streaming">
+      <button class="dropdown-btn">Streaming ▾</button>
+      <div class="dropdown-content">
+        <div class="chips" data-filter="streaming"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-meta">
+    <span id="result-count">0</span> titles
+    <button id="clear-filters" class="ghost-btn">Clear filters</button>
+    <span class="meta-divider">|</span>
+    <button id="surprise-btn" class="ghost-btn surprise-btn">🎲 Surprise me</button>
+    <span class="meta-divider">|</span>
+    <button id="watch-order-btn" class="ghost-btn">📋 Watch order</button>
+    <span class="meta-divider">|</span>
+    <button id="view-toggle-btn" class="ghost-btn" title="Toggle Timeline View">⏳ Timeline View</button>
+    <span class="meta-divider">|</span>
+    <span class="region-toggle">
+      <button class="region-btn active" data-region="GB" id="region-gb">🇬🇧 UK</button>
+      <button class="region-btn" data-region="US" id="region-us">🇺🇸 US</button>
+    </span>
+    <span class="meta-divider">|</span>
+    <button id="playlist-toggle-btn" class="ghost-btn" title="View your bookmarked items">❤️ Playlist</button>
+    <span class="meta-divider">|</span>
+    <button id="stats-btn" class="ghost-btn" title="View your Multiverse Stats">📊 Stats</button>
+    <span class="meta-divider">|</span>
+    <span class="progress-display">Watch progress: <button id="progress-btn" class="progress-btn"><span id="progress-label">Fully caught up</span> ✎</button></span>
+    <button id="share-progress-btn" class="ghost-btn" title="Share your watch progress" style="margin-left: 8px;">📤 Share</button>
+  </div>
+</section>
+
+<main>
+  <div class="completion-bar-wrap" id="completion-bar-wrap">
+    <div class="completion-bar-track">
+      <div class="completion-bar-fill" id="completion-bar-fill"></div>
+    </div>
+    <div class="completion-label" id="completion-label"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="timeline-container hidden" id="timeline-view"></div>
+</main>
+
+<div id="progress-modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content small" role="dialog" aria-modal="true">
+    <button class="modal-close" id="progress-close" aria-label="Close">×</button>
+    <h2>Set your preferences</h2>
+    <p class="modal-sub">Personalise what you see and spoiler-lock content beyond your progress. You can update this anytime.</p>
+    <form id="progress-form" class="progress-form"></form>
+  </div>
+</div>
+
+<div id="watch-order-modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <button class="modal-close" id="watch-order-close" aria-label="Close">×</button>
+    <h2>Watch Order</h2>
+    <p class="modal-sub">MCU titles in canonical viewing order. Tick each one as you watch it.</p>
+    <div class="watch-order-tabs">
+      <button class="wo-tab active" data-order="canonical">Canonical order</button>
+      <button class="wo-tab" data-order="release">Release order</button>
+      <button class="wo-tab" data-order="newcomer">Newcomer path</button>
+    </div>
+    <div id="watch-order-list" class="watch-order-list"></div>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<footer>
+  <p>Marvel, MCU, and all related properties are © Marvel / Disney / respective rights holders. This is an unofficial fan portal.</p>
+  <p style="margin-top: 8px;"><a href="https://github.com/12345keddie/mcu-portal" target="_blank" style="color: var(--text); text-decoration: underline;">View on GitHub</a></p>
+</footer>
+
+<div id="stats-modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content stats-content" role="dialog" aria-modal="true">
+    <button class="modal-close" id="stats-close" aria-label="Close">×</button>
+    <h2 style="margin-bottom: 20px; font-size: 1.5rem;">📊 My Multiverse Stats</h2>
+    <div id="stats-body"></div>
+    <div class="modal-actions" style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px;">
+      <button id="export-csv-btn" class="primary">⬇️ Export to Letterboxd (CSV)</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
