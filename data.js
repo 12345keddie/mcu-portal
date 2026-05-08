@@ -583,6 +583,30 @@ const CATALOG = [
     synopsis: "Following the events of Iron Man 3, Trevor Slattery is an infamous icon locked up in Seagate Prison, where he is interviewed by a documentary filmmaker.",
     streaming: ["Disney+"], purchase: [], physical: ["Bonus on Thor: The Dark World Blu-ray"]
   },
+  {
+    id: "team-thor-2016", title: "Team Thor", year: 2016, releaseDate: "2016-08-28",
+    imdbId: "tt5813926",
+    type: "One-Shot", studio: "Marvel Studios", universe: "MCU", saga: "Infinity Saga", phase: 3,
+    runtime: 4, director: "Taika Waititi",
+    synopsis: "A mockumentary detailing what Thor was up to during the events of Captain America: Civil War, living in Australia with his average roommate Darryl.",
+    streaming: ["Disney+"], purchase: [], physical: ["Bonus on Captain America: Civil War Blu-ray"]
+  },
+  {
+    id: "team-thor-part-2-2017", title: "Team Thor: Part 2", year: 2017, releaseDate: "2017-02-14",
+    imdbId: "tt6488344",
+    type: "One-Shot", studio: "Marvel Studios", universe: "MCU", saga: "Infinity Saga", phase: 3,
+    runtime: 5, director: "Taika Waititi",
+    synopsis: "The hilarious continuation of Thor's time living with his roommate Darryl as they argue over household chores and rent.",
+    streaming: ["Disney+"], purchase: [], physical: ["Bonus on Doctor Strange Blu-ray"]
+  },
+  {
+    id: "team-darryl-2018", title: "Team Darryl", year: 2018, releaseDate: "2018-02-20",
+    imdbId: "tt7532356",
+    type: "One-Shot", studio: "Marvel Studios", universe: "MCU", saga: "Infinity Saga", phase: 3,
+    runtime: 6, director: "Taika Waititi",
+    synopsis: "After Thor moves out, Darryl finds a new roommate: the deposed Grandmaster from Sakaar.",
+    streaming: ["Disney+"], purchase: [], physical: ["Bonus on Thor: Ragnarok Blu-ray"]
+  },
 
   // =========================================================================
   // MARVEL TELEVISION (ABC / Hulu / Freeform)
